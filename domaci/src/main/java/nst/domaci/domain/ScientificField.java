@@ -12,7 +12,7 @@ public class ScientificField {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Scientific field name - obavezno polje")
+    @NotNull(message = "Scientific field name - required field")
     private String name;
 
     public ScientificField() {

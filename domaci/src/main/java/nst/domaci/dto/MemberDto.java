@@ -8,22 +8,22 @@ public class MemberDto {
 
     private Long id;
 
-    @NotNull(message = "Member firstname - obavezno polje")
+    @NotNull(message = "Member firstname - required field")
     private String firstName;
 
-    @NotNull(message = "Member lastname - obavezno polje")
+    @NotNull(message = "Member lastname - required field")
     private String lastName;
 
-    @NotNull(message = "Member academic title - obavezno polje")
+    @NotNull(message = "Member academic title - required field")
     private AcademicTitleDto academicTitle;
 
-    @NotNull(message = "Member education title - obavezno polje")
+    @NotNull(message = "Member education title - required field")
     private EducationTitleDto educationTitle;
 
-    @NotNull(message = "Member scientific field - obavezno polje")
+    @NotNull(message = "Member scientific field - required field")
     private ScientificFieldDto scientificField;
 
-    @NotNull(message = "Member department - obavezno polje")
+    @NotNull(message = "Member department - required field")
     private DepartmentDto department;
 
     public MemberDto() {

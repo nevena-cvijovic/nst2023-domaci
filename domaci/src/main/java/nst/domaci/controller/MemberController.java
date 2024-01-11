@@ -57,8 +57,8 @@ public class MemberController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable("id") Long id) throws Exception{
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Long id) throws Exception{
        memberService.delete(id);
        return new ResponseEntity<>("Member removed", HttpStatus.OK);
 

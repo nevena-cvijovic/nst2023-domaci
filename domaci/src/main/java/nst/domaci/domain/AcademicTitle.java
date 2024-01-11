@@ -14,7 +14,7 @@ public class AcademicTitle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Ime je obavezno polje")
+    @NotNull(message = "Academic title name - required field")
     private String name;
 
     public AcademicTitle() {

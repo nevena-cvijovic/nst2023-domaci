@@ -13,7 +13,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Ime je obavezno polje")
+    @NotEmpty(message = "Subject name - required field")
     @Size(min = 2, max = 10, message = "Broj znakova je od 2 do 10")
     private String name;
 

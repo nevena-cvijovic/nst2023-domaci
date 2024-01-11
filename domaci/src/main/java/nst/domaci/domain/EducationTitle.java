@@ -11,7 +11,7 @@ public class EducationTitle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Education title name - Obavezno polje")
+    @NotNull(message = "Education title name - required field")
     private String name;
 
     public EducationTitle() {

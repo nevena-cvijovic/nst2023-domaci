@@ -12,10 +12,10 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Member firstname - obavezno polje")
+    @NotNull(message = "Member firstname - required field")
     private String firstName;
 
-    @NotNull(message = "Member lastname - obavezno polje")
+    @NotNull(message = "Member lastname - required field")
     private String lastName;
 
     @ManyToOne

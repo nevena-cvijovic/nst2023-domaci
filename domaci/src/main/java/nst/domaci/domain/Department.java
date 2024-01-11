@@ -13,11 +13,11 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Ime je obavezno polje")
+    @NotEmpty(message = "Department name - required field")
     @Size(min = 2, max=10, message = "Broj znakova je od 2 do 10")
     private String name;
 
-    @NotNull(message = "skraceno ime je obavezno polje!")
+    @NotNull(message = "Department short name - required field")
     private String shortName;
 
     public Department() {

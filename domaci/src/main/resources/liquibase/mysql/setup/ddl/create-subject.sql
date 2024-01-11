@@ -5,4 +5,4 @@ create table tbl_subject(
     department_id bigint unsigned,
 	primary key (id),
     constraint department_fk FOREIGN KEY (department_id) REFERENCES tbl_department(id)
-)
+);

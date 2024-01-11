@@ -14,13 +14,11 @@ public class AcademicTitleHistory {
 
     @Id
     @ManyToOne
-    @MapsId("memberId")
     @JoinColumn(name = "member_id")
     private Member member;
 
     @Id
     @ManyToOne
-    @MapsId("academicTitleId")
     @JoinColumn(name= "academic_title_id")
     private AcademicTitle academicTitle;
 

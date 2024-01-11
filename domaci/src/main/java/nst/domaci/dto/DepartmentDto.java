@@ -7,11 +7,11 @@ public class DepartmentDto {
 
     private Long id;
 
-    @NotNull(message = "Ime je obavezno polje")
+    @NotNull(message = "Department name - required field")
     @Size(min = 2, max = 10, message = "Broj znakova je od 2 do 10")
     private String name;
 
-    @NotNull(message = "Skraceno ime je obavezno polje!")
+    @NotNull(message = "Department short name - required field")
     private String shortName;
 
 

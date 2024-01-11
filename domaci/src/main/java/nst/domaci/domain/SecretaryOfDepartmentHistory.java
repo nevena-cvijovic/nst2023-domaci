@@ -14,13 +14,11 @@ import java.time.LocalDate;
 public class SecretaryOfDepartmentHistory {
     @Id
     @ManyToOne
-    @MapsId("departmentId")
     @JoinColumn(name = "department_id")
     private Department department;
 
     @Id
     @ManyToOne
-    @MapsId("memberId")
     @JoinColumn(name = "member_id")
     private Member member;
 

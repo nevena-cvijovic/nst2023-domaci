@@ -6,7 +6,7 @@ public class ScientificFieldDto {
 
     private Long id;
 
-    @NotNull(message = "Scientific field name - obavezno polje")
+    @NotNull(message = "Scientific field name - required field")
     private String name;
 
     public ScientificFieldDto() {

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 public class AcademicTitleDto {
     private Long id;
 
-    @NotNull(message = "Ime je obavezno polje!")
+    @NotNull(message = "Academic title name - required field")
     private String name;
 
     public AcademicTitleDto() {

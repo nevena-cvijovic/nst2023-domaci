@@ -81,6 +81,7 @@ public class AcademicTitleHistoryServiceImpl implements AcademicTitleHistoryServ
     }
 
     @Override
+    @Transactional
     public void delete(AcademicTitleHistoryId academicTitleHistoryId) throws Exception {
         Optional<AcademicTitleHistory> academicTitleHistory = academicTitleHistoryRepository.findById(academicTitleHistoryId);
         if(academicTitleHistory.isEmpty()) throw new Exception("Academic title history doesn't exist");

@@ -14,10 +14,11 @@ public interface AcademicTitleHistoryService {
     List<AcademicTitleHistoryDto> getAll(Pageable pageable);
     List<AcademicTitleHistoryDto> getAll();
 
-    void delete (AcademicTitleHistoryId academicTitleHistoryId) throws Exception;
+    List<AcademicTitleHistoryDto> getByMember(Long id);
+    void delete (Long memberId, Long academicTitleId) throws Exception;
 
     void update (AcademicTitleHistoryDto academicTitleHistoryDto) throws Exception;
 
-    AcademicTitleHistoryDto findById(AcademicTitleHistoryId academicTitleHistoryId) throws Exception;
+    AcademicTitleHistoryDto findById(Long memberId, Long academicTitleId) throws Exception;
 
 }

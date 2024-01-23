@@ -13,10 +13,10 @@ public interface HeadOfDepartmentHistoryService {
     List<HeadOfDepartmentHistoryDto> getAll(Pageable pageable);
     List<HeadOfDepartmentHistoryDto> getAll();
 
-    void delete (HeadOfDepartmentHistoryId headOfDepartmentHistoryId) throws Exception;
+    void delete (Long departmentId, Long memberId) throws Exception;
 
     void update (HeadOfDepartmentHistoryDto secretaryOfDepartmentHistoryDto) throws Exception;
 
-    HeadOfDepartmentHistoryDto findById(HeadOfDepartmentHistoryId headOfDepartmentHistoryId) throws Exception;
+    HeadOfDepartmentHistoryDto findById(Long departmentId, Long memberId) throws Exception;
 
 }

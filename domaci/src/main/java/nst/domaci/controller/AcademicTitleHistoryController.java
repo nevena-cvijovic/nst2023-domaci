@@ -54,14 +54,16 @@ public class AcademicTitleHistoryController {
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public AcademicTitleHistoryDto findById(@PathVariable("id") AcademicTitleHistoryId id) throws Exception {
-        return academicTitleHistoryService.findById(id);
+    @GetMapping("/query")
+    public AcademicTitleHistoryDto findById(@RequestParam("memberId") Long memberId, @RequestParam("academicTitleId") Long academicTitleId) throws Exception {
+        return academicTitleHistoryService.findById(memberId,academicTitleId);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable AcademicTitleHistoryId id) throws Exception {
-        academicTitleHistoryService.delete(id);
+    @DeleteMapping
+    public ResponseEntity<Object> delete(@RequestParam("memberId") Long memberId, @RequestParam("academicTitleId") Long academicTitleId) throws Exception {
+        academicTitleHistoryService.delete(memberId,academicTitleId);
         return new ResponseEntity<>("Academic title history removed!", HttpStatus.OK);
     }
+
+
 }

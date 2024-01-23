@@ -17,11 +17,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/headOfDepartmentHistory")
-public class HeadOfDepartmentHistoryController {
+public class ManagerHistoryController {
 
     private final HeadOfDepartmentHistoryService headService;
 
-    public HeadOfDepartmentHistoryController(HeadOfDepartmentHistoryService headService) {
+    public ManagerHistoryController(HeadOfDepartmentHistoryService headService) {
         this.headService = headService;
     }
 
@@ -54,14 +54,16 @@ public class HeadOfDepartmentHistoryController {
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public HeadOfDepartmentHistoryDto findById(@PathVariable("id") HeadOfDepartmentHistoryId id) throws Exception {
-        return headService.findById(id);
+    @GetMapping("/query")
+    public HeadOfDepartmentHistoryDto findById(@RequestParam("departmentId") Long departmentId, @RequestParam("memberId") Long memberId) throws Exception {
+        return headService.findById(departmentId,memberId);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable HeadOfDepartmentHistoryId id) throws Exception {
-        headService.delete(id);
+    @DeleteMapping
+    public ResponseEntity<Object> delete(@RequestParam("departmentId") Long departmentId, @RequestParam("memberId") Long memberId) throws Exception {
+        headService.delete(departmentId,memberId);
         return new ResponseEntity<>("Head of Department history removed!", HttpStatus.OK);
     }
+
+
 }

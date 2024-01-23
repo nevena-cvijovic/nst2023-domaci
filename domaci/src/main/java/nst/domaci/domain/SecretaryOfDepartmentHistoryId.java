@@ -2,37 +2,28 @@ package nst.domaci.domain;
 
 
 
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
 public class SecretaryOfDepartmentHistoryId implements Serializable {
 
-    private Department department;
+    private Long departmentId;
 
-    private Member member;
+    private Long memberId;
 
     public SecretaryOfDepartmentHistoryId() {
     }
 
-    public SecretaryOfDepartmentHistoryId(Department department, Member member) {
-        this.department = department;
-        this.member = member;
+    public SecretaryOfDepartmentHistoryId(Long departmentId, Long memberId) {
+        this.departmentId = departmentId;
+        this.memberId = memberId;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
     @Override
@@ -40,11 +31,23 @@ public class SecretaryOfDepartmentHistoryId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SecretaryOfDepartmentHistoryId that = (SecretaryOfDepartmentHistoryId) o;
-        return Objects.equals(department, that.department) && Objects.equals(member, that.member);
+        return Objects.equals(departmentId, that.departmentId) && Objects.equals(memberId, that.memberId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(department, member);
+        return Objects.hash(departmentId, memberId);
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 }

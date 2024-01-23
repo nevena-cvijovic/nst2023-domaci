@@ -1,34 +1,37 @@
 package nst.domaci.domain;
 
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
 public class AcademicTitleHistoryId implements Serializable {
-    private Member member;
-    private AcademicTitle academicTitle;
+    private Long memberId;
+    private Long academicTitleID;
 
     public AcademicTitleHistoryId() {
     }
 
-    public AcademicTitleHistoryId(Member member, AcademicTitle academicTitle) {
-        this.member = member;
-        this.academicTitle = academicTitle;
+    public AcademicTitleHistoryId(Long memberId, Long academicTitleID) {
+        this.memberId = memberId;
+        this.academicTitleID = academicTitleID;
     }
 
-    public Member getMember() {
-        return member;
+    public Long getMemberId() {
+        return memberId;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
-    public AcademicTitle getAcademicTitle() {
-        return academicTitle;
+    public Long getAcademicTitleID() {
+        return academicTitleID;
     }
 
-    public void setAcademicTitle(AcademicTitle academicTitle) {
-        this.academicTitle = academicTitle;
+    public void setAcademicTitleID(Long academicTitleID) {
+        this.academicTitleID = academicTitleID;
     }
 
     @Override
@@ -36,11 +39,11 @@ public class AcademicTitleHistoryId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AcademicTitleHistoryId that = (AcademicTitleHistoryId) o;
-        return Objects.equals(member, that.member) && Objects.equals(academicTitle, that.academicTitle);
+        return Objects.equals(memberId, that.memberId) && Objects.equals(academicTitleID, that.academicTitleID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(member, academicTitle);
+        return Objects.hash(memberId, academicTitleID);
     }
 }

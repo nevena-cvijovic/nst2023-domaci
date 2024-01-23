@@ -14,9 +14,9 @@ public interface SecretaryOfDepartmentHistoryService {
     List<SecretaryOfDepartmentHistoryDto> getAll(Pageable pageable);
     List<SecretaryOfDepartmentHistoryDto> getAll();
 
-    void delete (SecretaryOfDepartmentHistoryId secretaryOfDepartmentHistoryId) throws Exception;
+    void delete (Long departmentId, Long memberId) throws Exception;
 
     void update (SecretaryOfDepartmentHistoryDto secretaryOfDepartmentHistoryDto) throws Exception;
 
-    SecretaryOfDepartmentHistoryDto findById(SecretaryOfDepartmentHistoryId secretaryOfDepartmentHistoryId) throws Exception;
+    SecretaryOfDepartmentHistoryDto findById(Long departmentId, Long memberId) throws Exception;
 }

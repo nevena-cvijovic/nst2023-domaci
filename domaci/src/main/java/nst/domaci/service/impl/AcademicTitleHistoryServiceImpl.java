@@ -54,7 +54,7 @@ public class AcademicTitleHistoryServiceImpl implements AcademicTitleHistoryServ
 
         //does exist or not in database
         Optional<AcademicTitleHistory> academicTitleHistoryOptional = academicTitleHistoryRepository.findById(
-                new AcademicTitleHistoryId(academicTitleHistory.getMember(), academicTitleHistory.getAcademicTitle()));
+                new AcademicTitleHistoryId(academicTitleHistory.getMember().getId(), academicTitleHistory.getAcademicTitle().getId()));
         //if doesn't exist save and return
         if(academicTitleHistoryOptional.isEmpty()) return academicTitleHistoryConverter.toDto(academicTitleHistoryRepository.save(academicTitleHistory));
 
@@ -81,9 +81,14 @@ public class AcademicTitleHistoryServiceImpl implements AcademicTitleHistoryServ
     }
 
     @Override
+    public List<AcademicTitleHistoryDto> getByMember(Long id) {
+        return academicTitleHistoryRepository.findByMemberId(id).stream().map(academicTitleHistoryConverter::toDto).collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
-    public void delete(AcademicTitleHistoryId academicTitleHistoryId) throws Exception {
-        Optional<AcademicTitleHistory> academicTitleHistory = academicTitleHistoryRepository.findById(academicTitleHistoryId);
+    public void delete(Long memberId, Long academicTitleId) throws Exception {
+        Optional<AcademicTitleHistory> academicTitleHistory = academicTitleHistoryRepository.findById(new AcademicTitleHistoryId(memberId,academicTitleId));
         if(academicTitleHistory.isEmpty()) throw new Exception("Academic title history doesn't exist");
         academicTitleHistoryRepository.delete(academicTitleHistory.get());
     }
@@ -94,8 +99,8 @@ public class AcademicTitleHistoryServiceImpl implements AcademicTitleHistoryServ
     }
 
     @Override
-    public AcademicTitleHistoryDto findById(AcademicTitleHistoryId academicTitleHistoryId) throws Exception {
-        Optional<AcademicTitleHistory> academicTitleHistory = academicTitleHistoryRepository.findById(academicTitleHistoryId);
+    public AcademicTitleHistoryDto findById(Long memberId, Long academicTitleId) throws Exception {
+        Optional<AcademicTitleHistory> academicTitleHistory = academicTitleHistoryRepository.findById(new AcademicTitleHistoryId(memberId,academicTitleId));
         if(academicTitleHistory.isEmpty()) throw new Exception("Academic title history doesn't exist");
        return  academicTitleHistoryConverter.toDto(academicTitleHistory.get());
     }

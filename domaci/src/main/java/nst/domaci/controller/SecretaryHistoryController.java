@@ -1,11 +1,7 @@
 package nst.domaci.controller;
 
 import jakarta.validation.Valid;
-import nst.domaci.domain.AcademicTitleHistoryId;
-import nst.domaci.domain.SecretaryOfDepartmentHistoryId;
-import nst.domaci.dto.AcademicTitleHistoryDto;
 import nst.domaci.dto.SecretaryOfDepartmentHistoryDto;
-import nst.domaci.service.AcademicTitleHistoryService;
 import nst.domaci.service.SecretaryOfDepartmentHistoryService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,12 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/secretaryOfDepartmentHistory")
 
-public class SecretaryOfDepartmentHistoryController {
+public class SecretaryHistoryController {
 
 
     private final SecretaryOfDepartmentHistoryService secretaryService;
 
-    public SecretaryOfDepartmentHistoryController(SecretaryOfDepartmentHistoryService secretaryService) {
+    public SecretaryHistoryController(SecretaryOfDepartmentHistoryService secretaryService) {
         this.secretaryService = secretaryService;
     }
 
@@ -57,14 +53,15 @@ public class SecretaryOfDepartmentHistoryController {
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public SecretaryOfDepartmentHistoryDto findById(@PathVariable("id") SecretaryOfDepartmentHistoryId id) throws Exception {
-        return secretaryService.findById(id);
+    @GetMapping("/query")
+    public SecretaryOfDepartmentHistoryDto findById(@RequestParam("departmentId") Long departmentId, @RequestParam("memberId") Long memberId) throws Exception {
+        return secretaryService.findById(departmentId,memberId);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable SecretaryOfDepartmentHistoryId id) throws Exception {
-        secretaryService.delete(id);
+    @DeleteMapping
+    public ResponseEntity<Object> delete(@RequestParam("departmentId") Long departmentId, @RequestParam("memberId")Long memberId ) throws Exception {
+        secretaryService.delete(departmentId,memberId);
         return new ResponseEntity<>("Secretary of Department history removed!", HttpStatus.OK);
     }
+
 }

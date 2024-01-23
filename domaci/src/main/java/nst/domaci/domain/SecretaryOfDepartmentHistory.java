@@ -9,16 +9,21 @@ import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
 @Entity
-@IdClass(SecretaryOfDepartmentHistoryId.class)
+
 @Table(name = "tbl_secretary_of_department_history")
 public class SecretaryOfDepartmentHistory {
-    @Id
+
+    @EmbeddedId
+    private SecretaryOfDepartmentHistoryId id;
+
     @ManyToOne
+    @MapsId("departmentId")
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @Id
+
     @ManyToOne
+    @MapsId("memberId")
     @JoinColumn(name = "member_id")
     private Member member;
 

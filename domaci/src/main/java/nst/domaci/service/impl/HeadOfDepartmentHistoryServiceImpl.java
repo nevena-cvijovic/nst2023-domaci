@@ -41,7 +41,7 @@ public class HeadOfDepartmentHistoryServiceImpl implements HeadOfDepartmentHisto
         Optional<Department> departmentOptional = departmentRepository.findById(head.getDepartment().getId());
         if(departmentOptional.isEmpty()) throw new Exception("Department doesn't exist");
 
-        Optional<HeadOfDepartmentHistory> headOptional = headRepository.findById(new HeadOfDepartmentHistoryId(head.getDepartment(), head.getMember()));
+        Optional<HeadOfDepartmentHistory> headOptional = headRepository.findById(new HeadOfDepartmentHistoryId(head.getDepartment().getId(), head.getMember().getId()));
         //if doesn't exist in database, save and return
         if(headOptional.isEmpty()) return headConverter.toDto(headRepository.save(head));
         //else set values, save and return
@@ -66,8 +66,8 @@ public class HeadOfDepartmentHistoryServiceImpl implements HeadOfDepartmentHisto
 
     @Override
     @Transactional
-    public void delete(HeadOfDepartmentHistoryId headOfDepartmentHistoryId) throws Exception {
-        Optional<HeadOfDepartmentHistory> head = headRepository.findById(headOfDepartmentHistoryId);
+    public void delete(Long departmentId, Long memberId) throws Exception {
+        Optional<HeadOfDepartmentHistory> head = headRepository.findById(new HeadOfDepartmentHistoryId(departmentId,memberId));
         if(head.isEmpty()) throw new Exception("Head of Department history doesn't exist");
         headRepository.delete(head.get());
     }
@@ -78,8 +78,8 @@ public class HeadOfDepartmentHistoryServiceImpl implements HeadOfDepartmentHisto
     }
 
     @Override
-    public HeadOfDepartmentHistoryDto findById(HeadOfDepartmentHistoryId headOfDepartmentHistoryId) throws Exception {
-        Optional<HeadOfDepartmentHistory> head = headRepository.findById(headOfDepartmentHistoryId);
+    public HeadOfDepartmentHistoryDto findById(Long departmentId, Long memberId) throws Exception {
+        Optional<HeadOfDepartmentHistory> head = headRepository.findById(new HeadOfDepartmentHistoryId(departmentId,memberId));
         if(head.isEmpty()) throw new Exception("Head of Department history doesn't exist");
         return headConverter.toDto(head.get());
     }

@@ -8,17 +8,20 @@ import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
 @Entity
-@IdClass(AcademicTitleHistoryId.class)
+
 @Table(name = "tbl_academic_title_history")
 public class AcademicTitleHistory {
 
-    @Id
+    @EmbeddedId
+    private AcademicTitleHistoryId id;
     @ManyToOne
+    @MapsId("memberId")
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Id
+
     @ManyToOne
+    @MapsId("academicTitleID")
     @JoinColumn(name= "academic_title_id")
     private AcademicTitle academicTitle;
 

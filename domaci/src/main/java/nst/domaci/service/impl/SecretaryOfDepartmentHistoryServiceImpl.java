@@ -41,7 +41,7 @@ public class SecretaryOfDepartmentHistoryServiceImpl implements SecretaryOfDepar
         Optional<Department> departmentOptional = departmentRepository.findById(secretary.getDepartment().getId());
         if(departmentOptional.isEmpty()) throw new Exception("Department doesn't exist");
 
-        Optional<SecretaryOfDepartmentHistory> secretaryOptional = secretaryRepository.findById(new SecretaryOfDepartmentHistoryId(secretary.getDepartment(), secretary.getMember()));
+        Optional<SecretaryOfDepartmentHistory> secretaryOptional = secretaryRepository.findById(new SecretaryOfDepartmentHistoryId(secretary.getDepartment().getId(), secretary.getMember().getId()));
        //if doesn't exist in database, save and return
         if(secretaryOptional.isEmpty()) return secretaryConverter.toDto(secretaryRepository.save(secretary));
         //else set values, save and return
@@ -65,8 +65,8 @@ public class SecretaryOfDepartmentHistoryServiceImpl implements SecretaryOfDepar
 
     @Override
     @Transactional
-    public void delete(SecretaryOfDepartmentHistoryId secretaryOfDepartmentHistoryId) throws Exception {
-        Optional<SecretaryOfDepartmentHistory> secretary = secretaryRepository.findById(secretaryOfDepartmentHistoryId);
+    public void delete(Long departmentId, Long memberId) throws Exception {
+        Optional<SecretaryOfDepartmentHistory> secretary = secretaryRepository.findById(new SecretaryOfDepartmentHistoryId(departmentId,memberId));
         if(secretary.isEmpty()) throw new Exception("Secretary of Department history doesn't exist");
         secretaryRepository.delete(secretary.get());
     }
@@ -77,8 +77,8 @@ public class SecretaryOfDepartmentHistoryServiceImpl implements SecretaryOfDepar
     }
 
     @Override
-    public SecretaryOfDepartmentHistoryDto findById(SecretaryOfDepartmentHistoryId secretaryOfDepartmentHistoryId) throws Exception {
-        Optional<SecretaryOfDepartmentHistory> secretary = secretaryRepository.findById(secretaryOfDepartmentHistoryId);
+    public SecretaryOfDepartmentHistoryDto findById(Long departmentId, Long memberId) throws Exception {
+        Optional<SecretaryOfDepartmentHistory> secretary = secretaryRepository.findById(new SecretaryOfDepartmentHistoryId(departmentId,memberId));
         if(secretary.isEmpty()) throw new Exception("Secretary of Department history doesn't exist");
         return secretaryConverter.toDto(secretary.get());
     }

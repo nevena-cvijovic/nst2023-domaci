@@ -1,36 +1,35 @@
 package nst.domaci.dto;
 
+import java.util.List;
 
-import jakarta.validation.constraints.NotNull;
-
-
-public class MemberDto {
+public class MemberHistoryDto {
 
     private Long id;
 
-    @NotNull(message = "Member firstname - required field")
+
     private String firstName;
 
-    @NotNull(message = "Member lastname - required field")
+
     private String lastName;
 
-    @NotNull(message = "Member academic title - required field")
+
     private AcademicTitleDto academicTitle;
 
-    @NotNull(message = "Member education title - required field")
+
     private EducationTitleDto educationTitle;
 
-    @NotNull(message = "Member scientific field - required field")
+
     private ScientificFieldDto scientificField;
 
-    @NotNull(message = "Member department - required field")
+
     private DepartmentDto department;
 
+    private List<AcademicTitleHistoryDto> historyOfAcademicTitles;
 
-    public MemberDto() {
+    public MemberHistoryDto() {
     }
 
-    public MemberDto(Long id, String firstName, String lastName, AcademicTitleDto academicTitle, EducationTitleDto educationTitle, ScientificFieldDto scientificField, DepartmentDto department) {
+    public MemberHistoryDto(Long id, String firstName, String lastName, AcademicTitleDto academicTitle, EducationTitleDto educationTitle, ScientificFieldDto scientificField, DepartmentDto department, List<AcademicTitleHistoryDto> historyList) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,6 +37,7 @@ public class MemberDto {
         this.educationTitle = educationTitle;
         this.scientificField = scientificField;
         this.department = department;
+        this.historyOfAcademicTitles = historyList;
     }
 
     public Long getId() {
@@ -94,5 +94,13 @@ public class MemberDto {
 
     public void setDepartment(DepartmentDto department) {
         this.department = department;
+    }
+
+    public List<AcademicTitleHistoryDto> getHistoryOfAcademicTitles() {
+        return historyOfAcademicTitles;
+    }
+
+    public void setHistoryOfAcademicTitles(List<AcademicTitleHistoryDto> historyOfAcademicTitles) {
+        this.historyOfAcademicTitles = historyOfAcademicTitles;
     }
 }

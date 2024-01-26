@@ -3,6 +3,7 @@ package nst.domaci.controller;
 import jakarta.validation.Valid;
 import nst.domaci.dto.AcademicTitleHistoryDto;
 import nst.domaci.dto.MemberDto;
+import nst.domaci.dto.MemberHistoryDto;
 import nst.domaci.service.AcademicTitleHistoryService;
 import nst.domaci.service.MemberService;
 import org.springframework.data.domain.PageRequest;
@@ -72,9 +73,31 @@ public class MemberController {
 
     }
 
-    @GetMapping("/{id}/history")
+    @GetMapping("/history/{id}")
     public ResponseEntity<Object> getHistory(@PathVariable("id") Long id) throws Exception{
         List<AcademicTitleHistoryDto> history = academicTitleHistoryService.getByMember(id);
         return new ResponseEntity<>(history, HttpStatus.OK);
+    }
+
+    @GetMapping("/academicTitleHistory")
+    public ResponseEntity<Object> getMembersWithHistory() throws Exception{
+        List<AcademicTitleHistoryDto> history =new ArrayList<>();
+        List<MemberHistoryDto> members = new ArrayList<>();
+        List<MemberDto> memberDtos = memberService.getAll();
+        for (MemberDto m: memberDtos) {
+            MemberHistoryDto member = new MemberHistoryDto();
+            member.setId(m.getId());
+            member.setFirstName(m.getFirstName());
+            member.setLastName(m.getLastName());
+            member.setDepartment(m.getDepartment());
+            member.setAcademicTitle(m.getAcademicTitle());
+            member.setEducationTitle(m.getEducationTitle());
+            member.setScientificField(m.getScientificField());
+            history = academicTitleHistoryService.getByMember(m.getId());
+            member.setHistoryOfAcademicTitles(history);
+            members.add(member);
+        }
+
+        return new ResponseEntity<>(members, HttpStatus.OK);
     }
 }

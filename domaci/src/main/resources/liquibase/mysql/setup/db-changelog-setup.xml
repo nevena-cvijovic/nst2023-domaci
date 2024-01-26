@@ -64,4 +64,7 @@
     <changeSet id="init-member" author="nevena">
         <sqlFile path="dml/init-member.sql" relativeToChangelogFile="true"/>
     </changeSet>
+    <changeSet id="init-academic-title-history" author="nevena">
+        <sqlFile path="dml/init-academic-title-history.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 </databaseChangeLog>

@@ -1,5 +1,7 @@
 package nst.domaci.dto;
 
+import java.util.Objects;
+
 public class SubjectDto {
     private Long id;
     private String name;
@@ -46,5 +48,18 @@ public class SubjectDto {
 
     public void setDepartmentDto(DepartmentDto departmentDto) {
         this.departmentDto = departmentDto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SubjectDto that = (SubjectDto) o;
+        return espb == that.espb && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(departmentDto, that.departmentDto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, espb, departmentDto);
     }
 }

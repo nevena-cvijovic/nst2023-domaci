@@ -41,7 +41,7 @@ public class SubjectControllerTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.id", equalTo(subjectDto.getId().intValue())))
                 .andExpect(jsonPath("$.name", equalTo(subjectDto.getName())))
-                .andExpect(jsonPath("$.esbp", equalTo(subjectDto.getEspb())))
+                .andExpect(jsonPath("$.espb", equalTo(subjectDto.getEspb())))
                 .andExpect(jsonPath("$.departmentDto.id", equalTo(subjectDto.getDepartmentDto().getId().intValue())))
                 .andExpect(jsonPath("$.departmentDto.name", equalTo(subjectDto.getDepartmentDto().getName())))
                 .andExpect(jsonPath("$.departmentDto.shortName", equalTo(subjectDto.getDepartmentDto().getShortName())));
